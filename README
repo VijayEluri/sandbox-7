@@ -1,0 +1,28 @@
+125-6-82-38:~ junichi$ git config --global user.name "Junichi Kato"
+125-6-82-38:~ junichi$ git config --global user.email j5ik2o@gmail.com
+125-6-82-38:~ junichi$ cd
+125-6-82-38:~ junichi$ mkdir -p git/sandbox
+125-6-82-38:~ junichi$ cd git/sandbox/
+125-6-82-38:sandbox junichi$ ls
+125-6-82-38:sandbox junichi$ git init
+Initialized empty Git repository in /Users/junichi/git/sandbox/.git/
+125-6-82-38:sandbox junichi$ touch README
+125-6-82-38:sandbox junichi$ git add README
+125-6-82-38:sandbox junichi$ git commit -m 'first commit'
+[master (root-commit) 9afe8f9] first commit
+ 0 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 README
+125-6-82-38:sandbox junichi$ git remote add origin git@github.com:j5ik2o/sandbox.git
+125-6-82-38:sandbox junichi$ git push origin master
+The authenticity of host 'github.com (207.97.227.239)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,207.97.227.239' (RSA) to the list of known hosts.
+Identity added: /Users/junichi/.ssh/id_rsa (/Users/junichi/.ssh/id_rsa)
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 209 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:j5ik2o/sandbox.git
+ * [new branch]      master -> master
+125-6-82-38:sandbox junichi$ 
+
