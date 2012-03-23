@@ -11,7 +11,7 @@ object Controller {
     reset {
       val params = shift {
         ctx: (Int => T) =>
-        // 事前処理
+         // このへんに事前処理
           val counter = 0
           def process(l: Int): T = {
             try {
@@ -27,6 +27,7 @@ object Controller {
             }
           }
           process(counter)
+         // このへんに事後処理
       }
       println("counter = " + params)
       // 繰り返し処理
