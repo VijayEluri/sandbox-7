@@ -11,14 +11,15 @@
 \setlength{\evensidemargin}{-5.4truemm} % 
 \addtolength{\textwidth}{-40truemm}     % 右の余白も20mmに
 
+\usepackage{url}
 \usepackage{ascmac} 
 \usepackage[dvipdfm]{graphicx}
 \usepackage{scala}
 
 \begin{document}
-\begin{screen}
+  \begin{screen}
 この1〜2年、開発者のコミュニティなどで 着実に人気が高まっているプログラミング言語が「Scala(スカラ、スケーラと読みます)」 です。本特集では、Javaプログラマ(見習いも含みます)に向けて、Scalaをなるべく簡潔にわかりやすくお伝えします。  
-\end{screen}
+  \end{screen}
 
 Scalaは、スイス連邦工科大学ローザンヌ校のMartin Odersky(マーティン・オーダスキー)教授率いるチームが開発しているプログラミング言語です。オープンソース(BSDライセンスに似たSCALA LICENSE)で開発・公開されており、その範囲内で自由に利用できます。最初に、“なぜ、 Scalaの人気が高まっているのか”を説明します。
 
@@ -50,6 +51,7 @@ public class Money {
   }
 }
 \end{lstlisting}
+
 \section*{Javaの資産を生かせる}
 ソースコード\ref{src:money}では通貨の単位を表すjava.util.Currnecyが利用されています。Scalaは実行環境にJava仮想マシン(Java VM)を利用するため、ScalaプログラムからJavaの機能をシームレスに利用することができるのです。このようにJavaとの親和性が高いのも大きな特徴です。Javaプログラマにとっては、オブジェクト指向の知識を生かしつつ関数型言語の考え方をスムーズに取り入れながら、Javaの資産も利用できるわけです。 こうして見てくると、JavaプログラマがScalaに注目するのも当然のように思えてきませんか。Scalaは、Javaプログラマが次に学ぶに値する言語です。より品質の高いプログラムを書けるようになるためにScalaの知識はきっと役立ちます。早速、開発実行環境を整備して、Scalaのプログラミングスタイルを見ていきましょう。
 \part{統合開発環境の整備}
@@ -68,7 +70,7 @@ public class Money {
 \end{table}
 
 \section{Scala配布ファイルのダウンロードと展開}
-それでは、Scala本体をインストールします。「Scala Distribution - The Scala Programming Language (http://www.scala-lang.org/downloads)」のWebページから最新版であるscala-2.9.2.final.zip(2012年7月上旬現在) をダウンロードします。そして、scala-2.9.2.final.zipを任意のディレクトリ(フォルダ)に展開します。
+それでは、Scala本体をインストールします。「Scala Distribution - The Scala Programming Language (\url{http://www.scala-lang.org/downloads})」のWebページから最新版であるscala-2.9.2.final.zip(2012年7月上旬現在) をダウンロードします。そして、scala-2.9.2.final.zipを任意のディレクトリ(フォルダ)に展開します。
 \section{環境変数を設定する}
 ScalaをインストールしたディレクトリをSCALA\_HOMEとして環境変数に設定します。さらに、\$SCALA\_HOME/binをPATHに追加します(表2)。 本体のインストールはこれだけで終了です。以下のコマンドを実行してバージョン番号などが表示されれば正しく導入できています。
 
@@ -81,7 +83,7 @@ Scala code runner version 2.9.2 -- Copyright 2002-2011, LAMP/EPFL
 次に、Scalaプログラミングに使える代表的な統合開発環 境の一つ、「IntelliJ IDEA」をインストールしてみましょう。 IntelliJ IDEAは、チェコ共和国に本社を構えるJetBrains社が提供するJava用の統合開発環境です。 有償の製品ですが、Apacheライセンスを採用したオープンソース版 「Community Edition」も用意されており、商用/非商用を問わず無償で利用できます。このIntelliJ IDEAにScala用のプラグインを追加することで、Scalaプログラミングが可能です。Eclipseでも同様にScalaプログラミングが可能ですが、現時点では動作の安定性でIntelliJ IDEAが勝ると思います。(インストール手順については別掲記事を参照)。
 
 \section{Scala対応プロジェクトを作成する}
-早速、IntelliJ IDEAを使ってScalaプログラムを動かして みましょう。文法についてはこの後の基礎編で説明します。 メニューから「File」→「New Project」を指定してくださ い。New Projectのウィザードが表示されます。「Create project from scratch」が選択されている状態で「Next」を クリックしてください。 図2のようなプロジェクト名(Name:)やプロジェクトを配置するディレクトリ(Project files location:)、プロジェクトの形式(Create module)などを選択する画面が表示されます。プロジェクトの形式は通常、「Java Module」を選択します。 次に、ソースディレクトリを作成するか否かを 指定する画面が表示されます。特に問題なければ、 「Create source directory」を選択して「Next」 をクリックしてください。続いて開いた画面で、どのプラグインを有効にするかを 選択します。ここでは、「Scala」を選びます。Scala Settingsの「Use Scala distribution」は、 SCALA\_HOMEが指定されていれば、そのパスが設定されているはずです。指定されていなければ手動で設定します。
+早速、IntelliJ IDEAを使ってScalaプログラムを動かしてみましょう。文法についてはこの後の基礎編で説明します。 メニューから「File」→「New Project」を指定してくださ い。New Projectのウィザードが表示されます。「Create project from scratch」が選択されている状態で「Next」を クリックしてください。 図2のようなプロジェクト名(Name:)やプロジェクトを配置するディレクトリ(Project files location:)、プロジェクトの形式(Create module)などを選択する画面が表示されます。プロジェクトの形式は通常、「Java Module」を選択します。 次に、ソースディレクトリを作成するか否かを 指定する画面が表示されます。特に問題なければ、 「Create source directory」を選択して「Next」 をクリックしてください。続いて開いた画面で、どのプラグインを有効にするかを 選択します。ここでは、「Scala」を選びます。Scala Settingsの「Use Scala distribution」は、 SCALA\_HOMEが指定されていれば、そのパスが設定されているはずです。指定されていなければ手動で設定します。
 
 \begin{figure}[hb]
   \centering
@@ -136,6 +138,7 @@ $ scala HelloWorldScript.scala
 Hello, World!
 \end{verbatim}
 実行する際、Windowsが警告を出す場合があります。その場合はアクセスを許可してください。 
+
 \section{コンパイル済みのプログラムを実行する}
 Javaと同様にコンパイラによってコンパイルしたプログラムを実行する方法です。まず、コンパイルの対象となるソースコードを用意します。そして、scalacコマンドでこのソースコードをコンパイルします。
 \begin{verbatim}
