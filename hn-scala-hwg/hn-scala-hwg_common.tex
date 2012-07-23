@@ -1,9 +1,10 @@
+\pagestyle{plain}
 %% 高さの設定
 \setlength{\textheight}{\paperheight}   % ひとまず紙面を本文領域に
 \setlength{\topmargin}{-5.4truemm}      % 上の余白を20mm(=1inch-5.4mm)に
 \addtolength{\topmargin}{-\headheight}  % 
 \addtolength{\topmargin}{-\headsep}     % ヘッダの分だけ本文領域を移動させる
-\addtolength{\textheight}{-40truemm}    % 下の余白も20mmに
+\addtolength{\textheight}{-65truemm}    % 下の余白も20mmに
 %% 幅の設定
 \setlength{\textwidth}{\paperwidth}     % ひとまず紙面を本文領域に
 \setlength{\oddsidemargin}{-5.4truemm}  % 左の余白を20mm(=1inch-5.4mm)に
@@ -14,6 +15,12 @@
 \usepackage{ascmac} 
 \usepackage[dvipdfm]{graphicx}
 \usepackage{scala}
+\usepackage{makeidx}
+\makeindex
+
+\newcommand{\tbRef}[1]{表~\ref{#1}}
+\newcommand{\lstRef}[1]{リスト~\ref{#1}}
+\newcommand{\figRef}[1]{図~\ref{#1}}
 
 \renewcommand{\lstlistingname}{リスト}
 

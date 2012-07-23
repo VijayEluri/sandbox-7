@@ -1,0 +1,69 @@
+\part{応用編:関数型の機能を学ぶ}
+\begin{itembox}[l]{ここで学ぶこと}
+\begin{itemize}
+\item 第一級オブジェクトとしての関数
+\item パターンマッチ(match式) 
+\item ケースクラス
+\item トレイト
+\end{itemize}
+\end{itembox}
+
+応用編ではまず、関数型言語の「関数」とはそもそもどういう概念かを説明します。関数は、一つ以上の引数を取り、一つの結果(戻り値)を生成する役割を持つオブジェクトです。基礎編で登場したメソッド1 はクラスに従属しますが、関数は単独で利用できます。例えば、
+\begin{lstlisting}[language=scala, frame=none]
+(x:Int) => x * x
+\end{lstlisting}
+は、「関数リテラル」と呼ばれる記述方法で、この例はIntの引数を取り、それを二乗した結果(戻り値)を生成する関数を示します。また、この関数リテラルで記述される名前のない関数を「無名関数」といいます。 
+
+\subsection{関数を変数に代入したり引数で渡せる}
+関数型言語での関数は、他の値と同様、変数に代入したり、別の関数の引数として渡したり、関数の戻り値として返したりと、基本的な操作を制限なく行える一人前のオブジェクトです。この性質を持つオブジェクトを「第一級オブジェクト」といいます。 例えば、\lstRef{src:variable_function}は関数を変数に代入する例です。 squareに代入された関数は、Int型の引数と、Int型の戻り値を持つ型として、定義されたことがわかります。定義した関数は、\lstRef{src:function_call}のようにして呼び出せます。定義した引数や戻り値に間違った型を指定するとコンパイルエラーとなります。「型安全」(タイプセーフ)なので、プログラマの負担が軽減されます。関数はまた、\lstRef{src:higher_order_function}のように通常の値と同様、関数の引数や戻り値に利用できます。このように関数を利用する関数のことを「高階関数」と呼びます。高階関数を利用することで、命令型言語では表現できないシンプルなコードが記述可能です。
+
+\begin{lstlisting}[language=scala, label=src:variable_function, caption=関数を変数に代入する例]
+// val 変数名 = 引数のリスト => コードブロック
+val square = (x:Int) => x * x
+// コードブロックが複数行の場合({ }が必要)
+val squareDebug = (x:Int) => {
+  val result = x * x println(result) result
+} 
+\end{lstlisting}
+
+\begin{lstlisting}[language=scala, label=src:function_call, caption=値としての関数を呼び出す]
+val result1 = square(2)		// result1 = 4
+val result2 = squareDebug(2)    // result2 = 4 標準出力に4を表示
+val result3 = square("aaa")	// 第一引数の型がコンパイルエラー
+val result4:String = square(2)	// 戻り値の型がコンパイルエラー 
+\end{lstlisting}
+
+\begin{lstlisting}[language=scala, label=src:higher_order_function, caption=関数をメソッドの引数や戻り値に利用する]
+// 関数を引数に取る関数
+def debugPrint(x:Int, func:(Int) => Int) {
+  val result = func(x)
+  println(result)
+}
+debugPrint(10, square) // 100が表示される
+ 
+// デバッグ版のsquareメソッドを返す関数
+def newSquareDebugFunc = {
+  val squareDebugFunc = (x:Int) => {
+    val result = square(x) println(result)
+    result
+  }
+  squareDebugFunc
+}
+val squareDebug = newSquareDebugFunc
+val result = squareDebug(5) // 25が表示される 
+\end{lstlisting}
+
+\section{ScalaとJavaのコレクションの違い}
+
+\subsection{Listの生成と追加、順次処理を学ぶ}
+\subsection{高階関数を使って繰り返し処理を作る}
+\subsection{配列にはArrayクラスを使う}
+
+\section{Scala プログラミングに欠かせない機能}
+\subsection{match式による柔軟なパターンマッチ}
+\subsection{数値や文字列などでマッチング可能}
+\subsection{ケースクラスでバリューオブジェクトを簡単実装}
+\subsection{トレイトは実装コードを書けるインタフェース}
+
+\part{まとめ}
+Scalaには次世代言語として様々な機能が実装されています。言語としての機能が多いとどうしても敬遠しがちですが、まずは自分が理解した範囲からScalaを使い始めてもよいと思います。関数型が難しければ、従来 からなじみのある命令型でプログラミングしてもScalaの魅力を十分に体感することがで きます。ここではScalaの魅力のほんの一部しか紹介できませんが、これをきっかけにして、Scala関連書籍やネット上のコンテンツを合わせて自分なりに学習することをお勧めします。

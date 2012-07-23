@@ -1,4 +1,7 @@
 #!/bin/sh
 
-platex -shell-escape hajimete_first.tex
-dvipdfmx hajimete_first
+platex -shell-escape $1.tex
+platex -shell-escape $1.tex
+mendex hn-scala-hwg.idx
+platex -shell-escape $1.tex
+dvipdfmx $1
