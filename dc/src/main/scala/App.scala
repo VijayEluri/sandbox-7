@@ -7,31 +7,26 @@ import scala.annotation.tailrec
 
 object Controller {
 
-  def retry[T](limit: Int, catchClass: Class[_])(f: => T) = {
+  def retry[T](limit: Int, catchClass: Class[_])(func: => T):T = {
     reset {
       val params = shift {
         ctx: (Int => T) =>
-         // このへんに事前処理
-          val counter = 0
-          def process(l: Int): T = {
-            try {
-              ctx(l)
+          var counter = 0
+          while(counter < limit - 1){
+            try{
+              return ctx(counter)
             } catch {
               case e: Throwable =>
-                if (l < limit - 1 && catchClass.isAssignableFrom(e.getClass())) {
-                  Thread.sleep(100);
-                  process(l + 1)
-                } else {
+                if (catchClass.isAssignableFrom(e.getClass())) {
+                  counter += 1
+                }else{
                   throw e
                 }
             }
           }
-          process(counter)
-         // このへんに事後処理
+          throw new RuntimeException
       }
-      println("counter = " + params)
-      // 繰り返し処理
-      f
+      func
     }
   }
 
